@@ -26,8 +26,9 @@ jobs:
           haxe-version: 4.2.5
       - name: Install Libraries
         run: |
-          haxelib setup ~/haxelib          
+          haxelib setup ~/haxelib
           haxelib install hxcpp > nul
+          haxelib install actuate
           haxelib install lime 7.7.0
           haxelib install openfl 9.2.2
           haxelib install flixel 4.11.0
@@ -44,7 +45,6 @@ jobs:
           haxelib install hxCodec 2.5.1          
           haxelib install linc_luajit
           haxelib install hscript
-          haxelib install actuate
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
