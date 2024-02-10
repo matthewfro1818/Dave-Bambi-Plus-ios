@@ -66,12 +66,12 @@
 		<library name="shared"   preload="false" />
 	</section>
 
-	<!-- _______________________________ Libraries Part 1 ______________________________ -->
+	<!-- _______________________________ Libraries ______________________________ -->
 
-        <lime version="" if="ios" />
-	<haxelib name="openfl" if="ios" />
-
-	<!-- _______________________________ Libraries Part 2 ______________________________ -->
+        <haxelib name="lime" version="7.1.0" path="~/haxelib/lime/7,1,0/src/" if="ios" />
+        <haxelib name="lime" version="-8.0.0" path="C:/haxelib/lime/8,0,0/src/" if="desktop" />
+        <haxelib name="lime" version="-8.0.0" path="%HAXELIB_ROOT%/lime/8,0,0/src/" if="android" />
+	<haxelib name="openfl" />
 	<haxelib name="flixel" />
 	<haxedev set='webgl' />
 	<haxelib name="flixel-addons" />
