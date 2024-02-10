@@ -3,7 +3,10 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0b | Extra Keys Addon 2.0.2" file="VsDave" packageName="dnbteam.daveandbambi" package="dnbteam.daveandbambi" main="Main" version="3.0.0" company="dnbteam"/>
+	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0b | Extra Keys Addon 2.0.2" 
+	file="VsDave" packageName="dnbteam.daveandbambi" 
+	package="dnbteam.daveandbambi" main="Main" 
+	version="0.1.0" company="dnbteam"/>
 	<app preloader="flixel.system.FlxPreloader"/>
 
 	<set name="APP_ID" value="0x0100f6c013bbc000"/>
@@ -65,8 +68,8 @@
 
 	<!-- _______________________________ Libraries Part 1 ______________________________ -->
 
-        <lime version="" /> 
-	<haxelib name="openfl" />
+        <lime version="" if="ios" />
+	<haxelib name="openfl" if="ios" />
 
 	<!-- _______________________________ Libraries Part 2 ______________________________ -->
 	<haxelib name="flixel" />
@@ -94,4 +97,42 @@
 	<target id="haxe" tool="linker" if="linux">
 		<lib name="/usr/lib64/libX11.so" if="HXCPP_M64" />
 	</target>
+
+	<!-- _________________________________ Additional stuff _______________________________ -->
+
+	<section if="COMPILE_ALL_CLASSES">
+		<haxeflag name="-dce" value="no" />
+		<haxeflag name="--macro" value="funkin.backend.system.macros.ScriptsMacro.addAdditionalClasses()" />
+	</section>
+
+	<haxeflag name="--macro" value="exclude('funkin.backend.system.updating')" unless="UPDATE_CHECKING"/>
+
+	<!-- Fix flash package issues -->
+	<haxeflag name="--macro" value="allowPackage('flash')" />
+	<haxeflag name="--macro" value="include('my.pack')" />
+
+	<!-- Fix compiling issues -->
+	<setenv name="HAXEPATH" value="./"/>
+
+	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
+	<haxedef name="HXCPP_STACK_LINE" if="release" />
+	<haxedef name="HXCPP_DEBUG_LINK" if="release" />
+
+	<haxedef name="hscriptPos" /> <!-- for logging -->
+
+
+	<!-- _________________________________ Mobile stuff _______________________________ -->
+
+	<section if="android">
+		<!-- Do whatever you want I'm tired uninstall and install everytime -->
+		<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" unless="debug" />
+
+		<!--Target SDK-->
+		<!--<android target-sdk-version="29" if="EXTERNAL || MEDIA"/>-->
+	</section>
+
+	<section if="ios">
+		<define name='objc' />
+		<ios linker-flags='-ObjC' />
+	</section>
 </project>
